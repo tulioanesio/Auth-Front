@@ -1,29 +1,30 @@
-import { Link, useNavigate} from "react-router-dom";
-import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
 import api from "../../services/api";
 
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const { data:token } = await api.post("/login", {
+      const { data: token } = await api.post("/login", {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       });
 
-      localStorage.setItem("token", token)
-      console.log(token)
+      localStorage.setItem("token", token);
+      console.log(token);
 
-      navigate("/list-users")
-
+      navigate("/list-users");
     } catch (err) {
-      alert("Senha ou email incorretos!");
-
+      setMessage("Your password or email is incorrect. Please try again.");
+      setError(true);
     }
   }
 
@@ -57,6 +58,7 @@ function Login() {
           >
             Log in
           </button>
+          <p className={"font-bold text-red-500"}>{message}</p>
         </form>
 
         <p className="mt-4 text-sm text-[#8B949E] text-center">
