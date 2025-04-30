@@ -1,12 +1,57 @@
-# React + Vite
+# Authentication User Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** of the Authentication User project, built with **React**, **Vite**, **Axios**, and **Tailwind**. It communicates with the Auth API to register and authenticate users, allowing access to a private user list.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** – Library for building user interfaces  
+- **Vite** – Fast build tool and development server  
+- **Axios** – HTTP client for API requests  
+- **Tailwind CSS** – Utility-first CSS framework  
 
-## Expanding the ESLint configuration
+## Backend Integration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This frontend connects to the [Auth API](https://github.com/tulioanesio/Auth-API), which handles:
+
+- User registration  
+- User login (with JWT)  
+- Access to protected routes  
+
+## Installation
+
+To run the frontend locally:
+
+1. Clone the repository and navigate to the project folder
+```
+   git clone https://github.com/tulioanesio/auth-frontend.git
+```
+3. Install the dependencies with npm
+```
+   npm install
+```
+5. Start the development server with npm
+```
+   npm run dev
+``` 
+
+Once running, the application will be available at `http://localhost:5173`.
+
+## Features
+
+- User registration with validation  
+- Login using JWT authentication  
+- Protected route that lists registered users  
+- Auth state saved using `localStorage`  
+- Redirects based on login status  
+- Fully responsive interface using Tailwind  
+
+## Authentication Flow
+
+1. The user registers with name, email, and password  
+2. After login, the user receives a token and is redirected  
+3. A private route shows the list of all users, accessible only when authenticated  
+
+## Live Demo
+
+The project is deployed on **Vercel** and can be accessed here:  
+[**Authentication User Frontend**](https://auth-front-mu.vercel.app/)
